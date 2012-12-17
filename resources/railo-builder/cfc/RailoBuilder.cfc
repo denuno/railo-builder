@@ -232,7 +232,8 @@ component {
 			if ( !excludeRa )
 				copyResources( dirs.tmpRA, dirs.tmpCoreSrc );
 			
-			var compileLog = javaCompiler.Compile( dirs.tmpCoreSrc, dirs.tmpCoreBin, this.settings.compilerArgs );
+			var compileCmd = "-sourcepath #dirs.tmpCoreSrc#;#dirs.loader# #this.settings.compilerArgs# -d #dirs.tmpCoreBin#";
+			var compileLog = javaCompiler.Compile( compileCmd );
 			
 			if ( find( "ERROR", compileLog ) || find( "java.lang.NullPointerException", compileLog ) ) {
 
